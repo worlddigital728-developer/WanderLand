@@ -1,0 +1,128 @@
+<% layout("/layout/boilerPlate") %>
+<body>
+      <style>
+            .filters{
+                     display: flex;
+                     flex-wrap: wrap;
+                     align-items: center;
+                  }
+                  .filter
+                  {
+                              margin-top: 2rem;
+                              margin-right: 3rem;
+                              text-align: center;
+                              opacity: 0.7;
+                  }
+                  .filter:hover{
+                        opacity: 1;
+                        cursor: pointer;
+                  }
+                  .filter p{
+                        font-size: 0.8rem;
+                  }
+                  .tax-info{
+                        display: none;
+                  }
+                  .tax-toggle{
+                        border: 1px solid black;
+                        border-radius: 1rem;
+                        height: 3rem;
+                        padding: 1rem;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 3rem;
+                        margin-top: 1rem;
+                  }
+      </style>
+       <div class="filters">
+            <div class="filter">
+                  <div><i class="fa-solid fa-fire"></i></div>
+                              Trending
+            </div>
+
+             <div class="filter">
+                  <div><i class="fa-solid fa-bed"></i></div>
+                              Room
+            </div>
+
+             <div class="filter">
+                  <div><i class="fa-solid fa-mountain-city"></i></div>
+                              Best Citites
+            </div>
+
+             <div class="filter">
+                  <div><i class="fa-solid fa-mountain-sun"></i></div>
+                              Mountains
+            </div>
+
+             <div class="filter">
+                  <div><i class="fa-brands fa-fort-awesome"></i></div>
+                              Castles
+            </div>
+
+             <div class="filter">
+                  <div><i class="fa-solid fa-person-swimming"></i></div>
+                              Amazing pools
+            </div>
+            
+            <div class="filter">
+                  <div><i class="fa-solid fa-snowflake"></i></div>
+                            Arctic
+            </div>
+
+            <div class="filter">
+                  <div><i class="fa-solid fa-tractor"></i></div>
+                          Farms
+            </div>
+
+            <div class="tax-toggle">
+                  <div class="form-check-reverse form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                        <label class="form-check-label" for="switchCheckDefault">Display Total after taxes</label>
+                  </div>
+            </div>
+
+       </div>
+  
+ <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1 mt-3">
+     <% for( let listing of allListings) {%>
+        <div class="col">
+        
+  <a href="/listing/<%=listing._id%>" class="listing-link">
+        <div class="card-listing ">
+          
+  <img src="<%=listing.image.url%>" class="card-img-top " alt="listing-image" style="height: 20rem;">  
+ 
+  <div class="card-body">
+    <h5 class="card-title"><%=listing.title%></h5>
+    <p class="card-text">
+    &#8360;:<%=listing.price.toLocaleString("en-PK")%> /day    
+    <i class="tax-info"> +5% GST</i>
+    </p>
+    <a href="/listing/<%=listing._id%>" class="btn btn-primary">See details</a>
+  </div>
+    </div>
+</a> 
+</div>
+     <% }%>
+
+    </div>
+<script>
+      let taxSwitch=document.getElementById("switchCheckDefault");
+
+      taxSwitch.addEventListener("click",()=>{
+            let taxInfo=document.getElementsByClassName("tax-info");
+            for(info of taxInfo)
+      {     if( info.style.display!="inline")
+            {
+             info.style.display="inline";
+            }
+            else
+            {
+                   info.style.display="none";
+            }
+           
+      }
+      })
+</script>
+</body>
