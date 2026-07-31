@@ -101,15 +101,15 @@ const sessionOps={
 //      let registerUser=await User.register(newUser,"hello");
 //      res.send(registerUser)
 // })
+   app.get("/", (req, res) => {
+    res.redirect("/listing");
+});
 
     //routes for listing and review
      app.use("/listing",listingRouter);
      app.use("/listing/:id/review",reviewRouter);
      app.use("/",userRouter)
-     app.get("/", (req, res) => {
-    res.redirect("/listing");
-});
-
+  
     //  mongdbUrl="mongodb://127.0.0.1:27017/wanderland";
   
     //connection with mongodb
