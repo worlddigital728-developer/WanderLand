@@ -110,10 +110,7 @@ const sessionOps={
      app.use("/listing/:id/review",reviewRouter);
      app.use("/",userRouter)
     
-     app.get("/", async(req,res)=>{
-    let allListings = await Listing.find({});
-    res.render("listings/index.ejs",{allListings});
-});
+
   
     //  mongdbUrl="mongodb://127.0.0.1:27017/wanderland";
   
